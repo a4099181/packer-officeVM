@@ -1,0 +1,93 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name":"{{user `os`}}",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "boot_wait": "5m",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows10_64",
+      "guest_additions_mode": "attach",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        ".\\scripts\\Enable-Rdp.ps1",
+        ".\\scripts\\Enable-WinRM.ps1",
+        ".\\scripts\\Install-VBoxGuestAdditions.ps1",
+        ".\\scripts\\Remove-AppxPackage.ps1",
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        ".\\{{user `os`}}\\LayoutModification.xml",
+        "{{ user `home`}}\\.ssh*\\id_*",
+        "{{ user `home`}}\\.ssh*\\known_hosts"
+      ],
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+      ]
+    }
+  , {
+      "type": "hyperv-iso",
+      "vm_name":"{{user `os`}}",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "5m",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_additions_mode": "disable",
+      "disk_size": "{{user `disk_size`}}",
+      "switch_name": "PackerExternal",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        ".\\scripts\\Enable-Rdp.ps1",
+        ".\\scripts\\Enable-WinRM.ps1",
+        ".\\scripts\\Remove-AppxPackage.ps1",
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        ".\\{{user `os`}}\\LayoutModification.xml",
+        "{{ user `home`}}\\.ssh*\\id_*",
+        "{{ user `home`}}\\.ssh*\\known_hosts"
+      ]
+    }
+  ],
+  "provisioners": [
+  {
+    "type": "windows-shell",
+    "inline": [
+      "@CD /D C:\\Users\\vagrant",
+      "@MKDIR .ssh",
+      "{{user `powershell`}} \"Get-ChildItem A: -Include id_*, known_hosts -File -Recurse | %% { Copy-Item $_.FullName .\\.ssh\\$($_.Name.ToLower()) }\"",
+      "@DIR /B .ssh"
+    ]
+  }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "packed\\{{user `os`}}.{{.Provider}}.box"
+    }
+  ],
+  "variables": {
+    "iso_url": "",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "",
+    "autounattend": "",
+    "os": "",
+    "disk_size": "65535",
+    "home": "{{env `USERPROFILE`}}",
+    "powershell": "powershell -ExecutionPolicy ByPass -NonInteractive -Command",
+    "winrm_timeout": "10m"
+  }
+}
