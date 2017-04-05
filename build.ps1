@@ -3,7 +3,7 @@ Param( [Parameter(Mandatory)] [String] $isoUrl,
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows10_1607')]
+    Param( [ValidateSet('windows10_1607','windows10_1703')]
            [Parameter(Mandatory)] [String] $os,
            [Parameter(Mandatory)] [String] $isoUrl,
            [Parameter(Mandatory)] [String] $isoMd5 )

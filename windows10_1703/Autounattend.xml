@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing>
+        <package action="configure">
+            <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.15063.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+            <selection name="Internet-Explorer-Optional-amd64" state="false" />
+            <selection name="Microsoft-Windows-Client-EmbeddedExp-Package" state="false" />
+            <selection name="Microsoft-Windows-HyperV-Guest-Package" state="false" />
+            <selection name="Microsoft-Windows-NetFx-VCRedist-Package" state="false" />
+            <selection name="Microsoft-Windows-Printing-PrintToPDFServices-Package" state="false" />
+            <selection name="Microsoft-Windows-Printing-XPSServices-Package" state="false" />
+            <selection name="Microsoft-Windows-Subsystem-Linux" state="true" />
+            <selection name="MSRDC-Infrastructure" state="false" />
+            <selection name="NetFx4-AdvSrvs" state="false" />
+            <selection name="Printing-Foundation-Features" state="false" />
+            <selection name="Printing-PrintToPDFServices-Features" state="false" />
+            <selection name="Printing-XPSServices-Features" state="false" />
+            <selection name="SearchEngine-Client-Package" state="false" />
+            <selection name="SMB1Protocol" state="false" />
+            <selection name="WorkFolders-Client" state="false" />
+            <selection name="Xps-Foundation-Xps-Viewer" state="false" />
+        </package>
+    </servicing>
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <CreatePartitions>
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Type>Primary</Type>
+                            <Extend>true</Extend>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <ModifyPartition wcm:action="add">
+                            <Extend>false</Extend>
+                            <Format>NTFS</Format>
+                            <Letter>C</Letter>
+                            <Order>1</Order>
+                            <PartitionID>1</PartitionID>
+                            <Label>Windows 10</Label>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                    <DiskID>0</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
+                </Disk>
+                <WillShowUI>OnError</WillShowUI>
+            </DiskConfiguration>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+                <FullName>Vagrant</FullName>
+                <Organization>Vagrant</Organization>
+                <ProductKey>
+                    <WillShowUI>Never</WillShowUI>
+                </ProductKey>
+            </UserData>
+            <ImageInstall>
+                <OSImage>
+                    <InstallTo>
+                        <DiskID>0</DiskID>
+                        <PartitionID>1</PartitionID>
+                    </InstallTo>
+                    <WillShowUI>OnError</WillShowUI>
+                    <InstallToAvailablePartition>false</InstallToAvailablePartition>
+                </OSImage>
+            </ImageInstall>
+        </component>
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>pl-PL</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>pl-PL</InputLocale>
+            <SystemLocale>pl-PL</SystemLocale>
+            <UILanguage>pl-PL</UILanguage>
+            <UILanguageFallback>pl-PL</UILanguageFallback>
+            <UserLocale>pl-PL</UserLocale>
+        </component>
+    </settings>
+    <settings pass="offlineServicing">
+        <component name="Microsoft-Windows-LUA-Settings" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+            <EnableLUA>false</EnableLUA>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>dgBhAGcAcgBhAG4AdABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+                    <PlainText>false</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <Description>Vagrant User</Description>
+                        <DisplayName>vagrant</DisplayName>
+                        <Group>administrators</Group>
+                        <Name>vagrant</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <ProtectYourPC>1</ProtectYourPC>
+            </OOBE>
+            <AutoLogon>
+                <Password>
+                    <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
+                    <PlainText>false</PlainText>
+                </Password>
+                <Username>vagrant</Username>
+                <Enabled>true</Enabled>
+            </AutoLogon>
+            <FirstLogonCommands>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>powershell -Command ( Get-ChildItem e:\cert -Filter *.cer | % { e:\cert\VBoxCertUtil add-trusted-publisher $_.FullName --root $_.FullName } )</CommandLine>
+                    <Description>Add Oracle certificates.</Description>
+                    <Order>100</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>e:\VBoxWindowsAdditions /S</CommandLine>
+                    <Description>Install Virtual Box Guest Additions.</Description>
+                    <Order>101</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>powershell -Command ( Get-NetConnectionProfile | ? NetworkCategory -eq Public | Set-NetConnectionProfile -NetworkCategory Private )</CommandLine>
+                    <Description>Privatize public networks</Description>
+                    <Order>400</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>winrm quickconfig -q</CommandLine>
+                    <Description>Enable WinRM</Description>
+                    <Order>490</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}</CommandLine>
+                    <Description>Configure WinRM</Description>
+                    <Order>491</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>winrm set winrm/config @{MaxTimeoutms="1800000"}</CommandLine>
+                    <Description>Configure WinRM</Description>
+                    <Order>492</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>winrm set winrm/config/service @{AllowUnencrypted="true"}</CommandLine>
+                    <Description>Configure WinRM</Description>
+                    <Order>493</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>winrm set winrm/config/service/auth @{Basic="true"}</CommandLine>
+                    <Description>Configure WinRM</Description>
+                    <Order>494</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>sc config WinRM start= auto</CommandLine>
+                    <Description>Configure WinRM Windows Service</Description>
+                    <Order>495</Order>
+                </SynchronousCommand>
+            </FirstLogonCommands>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+            <OEMInformation>
+                <HelpCustomized>false</HelpCustomized>
+            </OEMInformation>
+            <!-- Rename computer here. -->
+            <ComputerName>vagrant10-1703</ComputerName>
+            <TimeZone>Central European Standard Time</TimeZone>
+            <RegisteredOwner />
+        </component>
+        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SkipAutoActivation>true</SkipAutoActivation>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim://vboxsrv/vagrant/.vagrant/install-w10-1703.vim/install.wim#Windows 10 Enterprise N" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
