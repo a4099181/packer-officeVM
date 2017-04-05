@@ -1,0 +1,45 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name":"windows10_1607",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "boot_wait": "5m",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "5m",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows10_64",
+      "guest_additions_mode": "attach",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}"
+      ],
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+      ]
+    }
+  ],
+  "provisioners": [
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "packed\\windows10_1607.{{.Provider}}.box"
+    }
+  ],
+  "variables": {
+    "iso_url": "",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "",
+    "autounattend": "",
+    "disk_size": "65535"
+  }
+}
