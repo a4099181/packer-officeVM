@@ -34,8 +34,8 @@ packer-officeVM> powershell -File build.ps1 <your-iso-file-path> -os windows10_1
 
 > Please note, that `os` argument value is a name of the folder that contains expected `template.json` file.
 
-> If `os` argument is not provided (just as two above examples), then default value is used.
-> The default value is `windows10_1607`. This template expects ISO file of the Windows 10 Anniversary Update.
+> If `os` argument is not provided (just as in two above examples), then default value is used.
+> The default value is `windows10_1703`. This template expects ISO file of the Windows 10 Creators Update.
 
 #### Sample output of the command above:
 

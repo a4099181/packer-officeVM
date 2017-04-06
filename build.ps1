@@ -1,5 +1,5 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
-                              [String] $os = 'windows10_1607' )
+                              [String] $os = 'windows10_1703' )
 
 Function Invoke-Packer
 {
