@@ -37,6 +37,15 @@ packer-officeVM> powershell -File build.ps1 <your-iso-file-path> -os windows10_1
 > If `os` argument is not provided (just as in two first examples), then default value is used.
 > The default value is `windows10_1703`. This template expects ISO file of the Windows 10 Creators Update.
 
+#### What's in the box:
+
+* Windows installed,
+* single user: `vagrant` with password `vagrant`,
+* VirtualBox Guest additions installed,
+* RDP access enabled,
+* WinRM access enabled,
+* Windows Subsystem for Windows installed.
+
 #### Localization:
 
 Setup file for Windows installer is localized. It contains some elements where strict region ID is specified.
