@@ -172,6 +172,19 @@
                     <Order>495</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>
+            <StartTiles>
+                <RegionalOverrides>
+                    <RegionalOverride wcm:action="add">
+                        <Regions>
+                            <Region wcm:action="add">
+                                <CountryOrRegionID>PL</CountryOrRegionID>
+                                <Key>1</Key>
+                            </Region>
+                        </Regions>
+                        <Order>1</Order>
+                    </RegionalOverride>
+                </RegionalOverrides>
+            </StartTiles>
         </component>
     </settings>
     <settings pass="specialize">
@@ -188,5 +201,5 @@
             <SkipAutoActivation>true</SkipAutoActivation>
         </component>
     </settings>
-    <cpi:offlineImage cpi:source="wim://vboxsrv/vagrant/.vagrant/install-w10-1703.vim/install.wim#Windows 10 Enterprise N" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+    <cpi:offlineImage cpi:source="wim://vboxsrv/wim/install-w10-1703.vim/install.wim#Windows 10 Enterprise N" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>
