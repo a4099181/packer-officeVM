@@ -122,7 +122,7 @@
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command " & { Get-NetFirewallRule | ? DisplayGroup -in 'Pulpit zdalny', 'Remote desktop' | Enable-NetFirewallRule }"</CommandLine>
+                    <CommandLine>powershell -Command " &amp; { Get-NetFirewallRule | ? DisplayGroup -in 'Pulpit zdalny', 'Remote desktop' | Enable-NetFirewallRule }"</CommandLine>
                     <Description>Enable RDP.</Description>
                     <Order>51</Order>
                 </SynchronousCommand>
