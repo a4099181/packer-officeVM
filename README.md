@@ -34,8 +34,25 @@ packer-officeVM> powershell -File build.ps1 <your-iso-file-path> -os windows10_1
 
 > Please note, that `os` argument value is a name of the folder that contains expected `template.json` file.
 
-> If `os` argument is not provided (just as in two above examples), then default value is used.
+> If `os` argument is not provided (just as in two first examples), then default value is used.
 > The default value is `windows10_1703`. This template expects ISO file of the Windows 10 Creators Update.
+
+#### Localization:
+
+Setup file for Windows installer is localized. It contains some elements where strict region ID is specified.
+`Autounattend.xml` is located under a regional folder just to make a space for other languages.
+
+Build operation supports additional argument `locale` to indicate wanted language.
+So it is possible to run:
+
+```
+PS packer-officeVM> .\build.ps1 <your-iso-file-path> -locale pl-PL
+```
+
+> Supported languages it is a list of subfolders of the target Windows version folder.
+
+> Currently polish is the only one supported language :) (maybe for some time only).
+> It's a default one also when no `locale` is provided.
 
 #### Sample output of the command above:
 
