@@ -117,12 +117,12 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command ( Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0 )</CommandLine>
+                    <CommandLine>powershell -Command ( Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name fDenyTSConnections -Value 0 )</CommandLine>
                     <Description>Enable RDP.</Description>
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command ( Get-NetFirewallRule | ? DisplayGroup -in "Pulpit zdalny", "Remote desktop" | Enable-NetFirewallRule )</CommandLine>
+                    <CommandLine>powershell -Command " & { Get-NetFirewallRule | ? DisplayGroup -in 'Pulpit zdalny', 'Remote desktop' | Enable-NetFirewallRule }"</CommandLine>
                     <Description>Enable RDP.</Description>
                     <Order>51</Order>
                 </SynchronousCommand>
