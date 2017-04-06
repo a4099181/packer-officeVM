@@ -18,7 +18,11 @@
       "guest_additions_mode": "attach",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
-        "{{user `autounattend`}}"
+        "{{user `autounattend`}}",
+        ".\\scripts\\Enable-Rdp.ps1",
+        ".\\scripts\\Enable-WinRM.ps1",
+        ".\\scripts\\Install-VBoxGuestAdditions.ps1",
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1"
       ],
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--memory", "2048" ],

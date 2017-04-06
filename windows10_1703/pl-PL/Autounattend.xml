@@ -117,59 +117,24 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command ( Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name fDenyTSConnections -Value 0 )</CommandLine>
+                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Enable-Rdp.ps1</CommandLine>
                     <Description>Enable RDP.</Description>
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command " &amp; { Get-NetFirewallRule | ? DisplayGroup -in 'Pulpit zdalny', 'Remote desktop' | Enable-NetFirewallRule }"</CommandLine>
-                    <Description>Enable RDP.</Description>
-                    <Order>51</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command ( Get-ChildItem e:\cert -Filter *.cer | % { e:\cert\VBoxCertUtil add-trusted-publisher $_.FullName --root $_.FullName } )</CommandLine>
-                    <Description>Add Oracle certificates.</Description>
+                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Install-VBoxGuestAdditions.ps1</CommandLine>
+                    <Description>Install Virtual Box Guest Addition.</Description>
                     <Order>100</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>e:\VBoxWindowsAdditions /S</CommandLine>
-                    <Description>Install Virtual Box Guest Additions.</Description>
-                    <Order>101</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -Command ( Get-NetConnectionProfile | ? NetworkCategory -eq Public | Set-NetConnectionProfile -NetworkCategory Private )</CommandLine>
+                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Switch-ToPrivateNetwork.ps1</CommandLine>
                     <Description>Privatize public networks</Description>
                     <Order>400</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>winrm quickconfig -q</CommandLine>
+                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Enable-WinRM.ps1</CommandLine>
                     <Description>Enable WinRM</Description>
                     <Order>490</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}</CommandLine>
-                    <Description>Configure WinRM</Description>
-                    <Order>491</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>winrm set winrm/config @{MaxTimeoutms="1800000"}</CommandLine>
-                    <Description>Configure WinRM</Description>
-                    <Order>492</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>winrm set winrm/config/service @{AllowUnencrypted="true"}</CommandLine>
-                    <Description>Configure WinRM</Description>
-                    <Order>493</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>winrm set winrm/config/service/auth @{Basic="true"}</CommandLine>
-                    <Description>Configure WinRM</Description>
-                    <Order>494</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>sc config WinRM start= auto</CommandLine>
-                    <Description>Configure WinRM Windows Service</Description>
-                    <Order>495</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <StartTiles>
