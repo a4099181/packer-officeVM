@@ -14,6 +14,7 @@ Function Invoke-Packer
     packer build `
         --var iso_url="$isoUrl" `
         --var iso_checksum=$isoMd5 `
+        --var os=$os `
         --var autounattend=.\$os\$locale\Autounattend.xml `
         --only=virtualbox-iso .\$os\template.json
 

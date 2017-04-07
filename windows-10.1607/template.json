@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "vm_name":"windows10_1607",
+      "vm_name":"{{user `os`}}",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
@@ -32,7 +32,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "packed\\windows10_1607.{{.Provider}}.box"
+      "output": "packed\\{{user `os`}}.{{.Provider}}.box"
     }
   ],
   "variables": {
@@ -40,6 +40,7 @@
     "iso_checksum_type": "md5",
     "iso_checksum": "",
     "autounattend": "",
+    "os": "",
     "disk_size": "65535"
   }
 }
