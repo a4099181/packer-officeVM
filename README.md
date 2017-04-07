@@ -4,6 +4,11 @@
 
 Simply, in a couple of words. It converts Windows ISO file into [vagrant's](http://www.vagrantup.com) box.
 
+## Importance!
+
+The primary goal of this project is to support [vagrant-officeVM](https://github.com/a4099181/vagrant-officeVM).
+These two projects forms one small ecosystem.
+
 ## Requirements
 
 There is only one requirement: [packer](http://www.packer.io).
