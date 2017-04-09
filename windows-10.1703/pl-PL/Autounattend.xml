@@ -127,6 +127,11 @@
                     <Order>100</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"</CommandLine>
+                    <Description>Enable Windows Developer Mode.</Description>
+                    <Order>200</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Switch-ToPrivateNetwork.ps1</CommandLine>
                     <Description>Privatize public networks</Description>
                     <Order>400</Order>

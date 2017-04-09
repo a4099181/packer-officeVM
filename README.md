@@ -49,7 +49,8 @@ packer-officeVM> powershell -File build.ps1 <your-iso-file-path> -os windows10_1
 * VirtualBox Guest additions installed,
 * RDP access enabled,
 * WinRM access enabled,
-* Windows Subsystem for Windows installed.
+* Linux Subsystem for Windows installed,
+* Developer Mode enabled.
 
 #### Localization:
 
