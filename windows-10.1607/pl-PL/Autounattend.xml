@@ -118,22 +118,22 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Enable-Rdp.ps1</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Enable-Rdp.ps1</CommandLine>
                     <Description>Enable RDP.</Description>
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Install-VBoxGuestAdditions.ps1</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Install-VBoxGuestAdditions.ps1</CommandLine>
                     <Description>Install Virtual Box Guest Addition.</Description>
                     <Order>100</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Switch-ToPrivateNetwork.ps1</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Switch-ToPrivateNetwork.ps1</CommandLine>
                     <Description>Privatize public networks</Description>
                     <Order>400</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -WindowStyle Hidden -ExecutionPolicy ByPass -File a:\Enable-WinRM.ps1</CommandLine>
+                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Enable-WinRM.ps1</CommandLine>
                     <Description>Enable WinRM</Description>
                     <Order>490</Order>
                 </SynchronousCommand>
