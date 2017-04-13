@@ -50,7 +50,8 @@ packer-officeVM> powershell -File build.ps1 <your-iso-file-path> -os windows10_1
 * RDP access enabled,
 * WinRM access enabled,
 * Linux Subsystem for Windows installed,
-* Developer Mode enabled.
+* Developer Mode enabled,
+* SSH Private/Public Keys may be uploaded. [Read this](#ssh-keys-support) to understand it.
 
 #### Localization:
 
@@ -68,6 +69,38 @@ PS packer-officeVM> .\build.ps1 <your-iso-file-path> -locale pl-PL
 
 > Currently polish is the only one supported language :) (maybe for some time only).
 > It's a default one also when no `locale` is provided.
+
+#### SSH Keys support
+
+> Only `windows-10.1703` template supported.
+
+##### The rules of concept are simple:
+
+- place your SSH keys at `%USERPROFILE%\.ssh` folder at host OS,
+- take care of the content of the `known_hosts` file to ensure non-interactive connection success,
+- the name of your SSH keys file should starts with `id_`,
+- all files `%USERPROFILE%\.ssh\id_*` with `known_hosts` packer copies into the virtual floppy,
+- after successful Windows installation all files `A:\id_*` and `A:\known_hosts` are copied to `C:\Users\vagrant\.ssh` folder.
+
+That's all at this stage. The next steps should be done on `vagrant up` at `Vagrantfile`.
+
+> Remember, that your box contains your SSH Private Key. Do not share the box.
+
+If you don't use SSH keys, then ignore it. [Packer] will ignore it also.
+
+##### What you can do with uploaded SSH keys?
+
+My real life examples:
+
+1. `Bash on Ubuntu on Windows` - link uploaded `.ssh` folder with user profile and enjoy git with SSH authentication:
+
+   ```shell
+   ~ $ ln -s /mnt/c/Users/vagrant/.ssh .ssh
+   ```
+
+2. `Git for Windows` - `%USERPROFILE%` folder is also user profile folder within `Git Bash`. With SSH keys uploaded you can clone repositories using SSH protocol already on non-interactive provisioning.
+
+3. `Git for Windows Portable` - the same as `Git for Windows`.
 
 #### Sample output of the command above:
 
@@ -117,3 +150,5 @@ Build 'virtualbox-iso' finished.
 ==> Builds finished. The artifacts of successful builds are:
 --> virtualbox-iso: 'virtualbox' provider box: packed\windows10_1607.virtualbox.box
 ```
+
+[packer]: http://www.packer.io
