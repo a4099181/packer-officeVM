@@ -22,7 +22,9 @@
         ".\\scripts\\Enable-Rdp.ps1",
         ".\\scripts\\Enable-WinRM.ps1",
         ".\\scripts\\Install-VBoxGuestAdditions.ps1",
-        ".\\scripts\\Switch-ToPrivateNetwork.ps1"
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        "{{ user `home`}}\\.ssh*\\id_*",
+        "{{ user `home`}}\\.ssh*\\known_hosts"
       ],
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--memory", "2048" ],
@@ -31,6 +33,15 @@
     }
   ],
   "provisioners": [
+  {
+    "type": "windows-shell",
+    "inline": [
+      "@CD C:\\Users\\vagrant",
+      "@MKDIR .ssh",
+      "IF EXIST A:\\id_* COPY A:\\id_* .ssh\\",
+      "IF EXIST A:\\known_hosts COPY A:\\known_hosts .ssh\\"
+    ]
+  }
   ],
   "post-processors": [
     {
@@ -45,6 +56,7 @@
     "iso_checksum": "",
     "autounattend": "",
     "os": "",
-    "disk_size": "65535"
+    "disk_size": "65535",
+    "home": "{{env `USERPROFILE`}}"
   }
 }
