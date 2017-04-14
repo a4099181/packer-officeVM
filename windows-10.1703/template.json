@@ -36,10 +36,10 @@
   {
     "type": "windows-shell",
     "inline": [
-      "@CD C:\\Users\\vagrant",
+      "@CD /D C:\\Users\\vagrant",
       "@MKDIR .ssh",
-      "IF EXIST A:\\id_* COPY A:\\id_* .ssh\\",
-      "IF EXIST A:\\known_hosts COPY A:\\known_hosts .ssh\\"
+      "{{user `powershell`}} \"Get-ChildItem A: -Include id_*, known_hosts -File -Recurse | %% { Copy-Item $_.FullName .\\.ssh\\$($_.Name.ToLower()) }\"",
+      "@DIR /B .ssh"
     ]
   }
   ],
@@ -57,6 +57,7 @@
     "autounattend": "",
     "os": "",
     "disk_size": "65535",
-    "home": "{{env `USERPROFILE`}}"
+    "home": "{{env `USERPROFILE`}}",
+    "powershell": "powershell -ExecutionPolicy ByPass -NonInteractive -Command"
   }
 }
