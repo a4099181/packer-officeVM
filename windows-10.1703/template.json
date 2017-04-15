@@ -22,6 +22,7 @@
         ".\\scripts\\Enable-Rdp.ps1",
         ".\\scripts\\Enable-WinRM.ps1",
         ".\\scripts\\Install-VBoxGuestAdditions.ps1",
+        ".\\scripts\\Remove-AppxPackage.ps1",
         ".\\scripts\\Switch-ToPrivateNetwork.ps1",
         "{{ user `home`}}\\.ssh*\\id_*",
         "{{ user `home`}}\\.ssh*\\known_hosts"

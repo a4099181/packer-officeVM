@@ -117,6 +117,16 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Remove-AppxPackage.ps1</CommandLine>
+                    <Description>Universal Apps cleanup.</Description>
+                    <Order>10</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /t REG_DWORD /f /v "DisableWindowsConsumerFeatures" /d "1"</CommandLine>
+                    <Description>Disable Windows Consumer Features.</Description>
+                    <Order>11</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>powercfg -hibernate off</CommandLine>
                     <Description>Disable the hibernate feature.</Description>
                     <Order>20</Order>
