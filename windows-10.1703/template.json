@@ -24,6 +24,7 @@
         ".\\scripts\\Install-VBoxGuestAdditions.ps1",
         ".\\scripts\\Remove-AppxPackage.ps1",
         ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        ".\\{{user `os`}}\\LayoutModification.xml",
         "{{ user `home`}}\\.ssh*\\id_*",
         "{{ user `home`}}\\.ssh*\\known_hosts"
       ],
