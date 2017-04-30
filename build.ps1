@@ -1,22 +1,28 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
-                              [String] $os      = 'windows-10.1703',
-                              [String] $locale  = 'pl-PL')
+                              [String] $provider     = 'virtualbox',
+                              [String] $os           = 'windows-10.1703',
+                              [String] $locale       = 'pl-PL',
+                              [String] $winrmTimeout = '10m' )
 
 Function Invoke-Packer
 {
     Param( [ValidateSet('windows-10.1607','windows-10.1703')]
            [Parameter(Mandatory)] [String] $os,
+           [ValidateSet('hyperv','virtualbox')]
+           [Parameter(Mandatory)] [String] $provider,
            [ValidateSet('pl-PL')]
            [Parameter(Mandatory)] [String] $locale,
            [Parameter(Mandatory)] [String] $isoUrl,
-           [Parameter(Mandatory)] [String] $isoMd5 )
+           [Parameter(Mandatory)] [String] $isoMd5,
+           [Parameter(Mandatory)] [String] $winrmTimeout )
 
     packer build `
         --var iso_url="$isoUrl" `
         --var iso_checksum=$isoMd5 `
         --var os=$os `
-        --var autounattend=.\$os\$locale\Autounattend.xml `
-        --only=virtualbox-iso .\$os\template.json
+        --var autounattend=.\$os\$locale\$provider\Autounattend.xml `
+        --var winrm_timeout=$winrmTimeout `
+        --only=$provider-iso .\$os\template.json
 
     if ( -Not $? )
     {
@@ -32,26 +38,28 @@ Function Step-BuildVersion
     { "name"     : "packer-officeVM",
       "versions" : [{
                  "version"   : "$($os.Split("-")[1])",
-                 "providers" : [{
-                             "name" : "virtualbox",
-                             "url"  : "packer-officeVM/packed/$os.virtualbox.box"
-                 }]
+                 "providers" : [ ]
       }]
     }
 "@ )
 
     ( $(If (Test-Path $boxFile) { Get-Content $boxFile } Else { $default }) | ConvertFrom-Json ) |
         % {
-            $box = $_
-            $box.versions |
+            $_.versions |
             % {
                 $_.version = ( New-Object Version $_.version |
                     % { New-Object Version $_.Major, $_.Minor, ( $_.Build + 1 ) } ).ToString(3)
+
+                $_.providers = @( Get-ChildItem "packed" |
+                                        ? Name -Like "$os.*.box" |
+                                        Select-Object @{ N='name'; E={ $_.Name.Split('.')[2] } },
+                                                      @{ N='url';  E={ $_.FullName } } )
+
             }
 
-            $box | ConvertTo-Json -Compress -Depth 4 | Out-File -Encoding ascii $boxFile
+            $_ | ConvertTo-Json -Compress -Depth 4 | Out-File -Encoding ascii $boxFile
         }
 }
 
-Invoke-Packer $os $locale $isoUrl ( Get-FileHash $isoUrl -Algorithm MD5 ).Hash -ErrorAction Stop
+Invoke-Packer $os $provider $locale $isoUrl ( Get-FileHash $isoUrl -Algorithm MD5 ).Hash $winrmTimeout -ErrorAction Stop
 Step-BuildVersion $os
