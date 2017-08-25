@@ -137,6 +137,11 @@
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>net accounts /maxpwage:unlimited</CommandLine>
+                    <Description>Sets the unlimited number of days that a user account's password is valid.</Description>
+                    <Order>60</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" /t REG_DWORD /f /v "AllowDevelopmentWithoutDevLicense" /d "1"</CommandLine>
                     <Description>Enable Windows Developer Mode.</Description>
                     <Order>200</Order>
