@@ -3,6 +3,7 @@ Param ( [String[]] $WantedAppxPackages = @(
                                         "microsoft.windowscommunicationsapps",
                                         "Microsoft.Office.OneNote",
                                         "Microsoft.WindowsCalculator",
+                                        "Microsoft.Windows.Photos",
                                         "Microsoft.People",
                                         "Microsoft.WindowsStore" )
       , [String[]] $UnremovableAppxPackages = @(
