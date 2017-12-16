@@ -18,19 +18,37 @@
             <selection name="WorkFolders-Client" state="false" />
         </package>
         <package action="remove">
-            <assemblyIdentity name="Microsoft-OneCore-ApplicationModel-Sync-Desktop-FOD-Package" version="10.0.19041.488" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-LanguageFeatures-TextToSpeech-pl-pl-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
             <assemblyIdentity name="Microsoft-OneCore-DirectX-Database-FOD-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
         </package>
         <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-Hello-Face-Package" version="10.0.19041.508" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+            <assemblyIdentity name="Microsoft-Windows-InternetExplorer-Optional-Package" version="11.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
         </package>
         <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-InternetExplorer-Optional-Package" version="11.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+            <assemblyIdentity name="Microsoft-Windows-Printing-PMCPPC-FoD-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-OneCore-ApplicationModel-Sync-Desktop-FOD-Package" version="10.0.19041.746" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-Hello-Face-Package" version="10.0.19041.844" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-MSPaint-FoD-Package" version="10.0.19041.746" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-Printing-WFS-FoD-Package" version="10.0.19041.906" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-QuickAssist-Package" version="10.0.19041.746" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-StepsRecorder-Package" version="10.0.19041.746" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-TabletPCMath-Package" version="10.0.19041.746" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+        </package>
+        <package action="remove">
+            <assemblyIdentity name="Microsoft-Windows-UserExperience-Desktop-Package" version="10.0.19041.662" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
         </package>
         <package action="remove">
             <assemblyIdentity name="Microsoft-Windows-LanguageFeatures-Handwriting-pl-pl-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
@@ -39,28 +57,7 @@
             <assemblyIdentity name="Microsoft-Windows-LanguageFeatures-OCR-pl-pl-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
         </package>
         <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-MSPaint-FoD-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-Notepad-FoD-Package" version="10.0.19041.488" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-Printing-PMCPPC-FoD-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-Printing-WFS-FoD-Package" version="10.0.19041.508" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package> -->
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-QuickAssist-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-StepsRecorder-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-TabletPCMath-Package" version="10.0.19041.488" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
-        </package>
-        <package action="remove">
-            <assemblyIdentity name="Microsoft-Windows-UserExperience-Desktop-Package" version="10.0.19041.488" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+            <assemblyIdentity name="Microsoft-Windows-LanguageFeatures-TextToSpeech-pl-pl-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
         </package>
     </servicing>
     <settings pass="windowsPE">
@@ -252,7 +249,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <!-- Rename computer here. -->
-            <ComputerName>vagrant10-20H2</ComputerName>
+            <ComputerName>vagrant10-21H1</ComputerName>
             <TimeZone>Central European Standard Time</TimeZone>
             <RegisteredOwner />
         </component>

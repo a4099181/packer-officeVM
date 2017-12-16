@@ -1,12 +1,13 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
                               [String] $provider     = 'hyperv',
-                              [String] $os           = 'windows-10.20H2',
+                              [String] $os           = 'windows-10.21H1',
                               [String] $locale       = 'pl-PL',
-                              [String] $winrmTimeout = '10m' )
+                              [String] $winrmTimeout = '10m',
+                                       $disksize     = 81920)
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows-10.20H2','windows-10.1903','windows-10.1709')]
+    Param( [ValidateSet('windows-10.21H1','windows-10.20H2','windows-10.1903','windows-10.1709')]
            [Parameter(Mandatory)] [String] $os,
            [ValidateSet('hyperv','virtualbox')]
            [Parameter(Mandatory)] [String] $provider,
@@ -14,10 +15,12 @@ Function Invoke-Packer
            [Parameter(Mandatory)] [String] $locale,
            [Parameter(Mandatory)] [String] $isoUrl,
            [Parameter(Mandatory)] [String] $isoMd5,
+           [Parameter(Mandatory)] [int]    $disksize,
            [Parameter(Mandatory)] [String] $winrmTimeout )
 
     packer build `
         --var iso_url="$isoUrl" `
+        --var disk_size=$disksize `
         --var iso_checksum=$isoMd5 `
         --var os=$os `
         --var autounattend=.\$os\$locale\$provider\Autounattend.xml `
@@ -62,5 +65,5 @@ Function Step-BuildVersion
         }
 }
 
-Invoke-Packer $os $provider $locale $isoUrl ( Get-FileHash $isoUrl -Algorithm MD5 ).Hash $winrmTimeout -ErrorAction Stop
+Invoke-Packer $os $provider $locale $isoUrl ( Get-FileHash $isoUrl -Algorithm MD5 ).Hash $disksize $winrmTimeout -ErrorAction Stop
 Step-BuildVersion $os
