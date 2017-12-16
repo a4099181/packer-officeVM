@@ -2,10 +2,9 @@
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <servicing>
         <package action="configure">
-            <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.15063.0" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+            <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.16299.15" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
             <selection name="Internet-Explorer-Optional-amd64" state="false" />
             <selection name="Microsoft-Windows-Client-EmbeddedExp-Package" state="false" />
-            <selection name="Microsoft-Windows-HyperV-Guest-Package" state="false" />
             <selection name="Microsoft-Windows-NetFx-VCRedist-Package" state="false" />
             <selection name="Microsoft-Windows-Printing-PrintToPDFServices-Package" state="false" />
             <selection name="Microsoft-Windows-Printing-XPSServices-Package" state="false" />
@@ -16,7 +15,8 @@
             <selection name="Printing-PrintToPDFServices-Features" state="false" />
             <selection name="Printing-XPSServices-Features" state="false" />
             <selection name="SearchEngine-Client-Package" state="false" />
-            <selection name="SMB1Protocol" state="false" />
+            <selection name="SmbDirect" state="false" />
+            <selection name="Windows-Defender-Default-Definitions" state="false" />
             <selection name="WorkFolders-Client" state="false" />
             <selection name="Xps-Foundation-Xps-Viewer" state="false" />
         </package>
@@ -63,6 +63,12 @@
                     </InstallTo>
                     <WillShowUI>OnError</WillShowUI>
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
+                    <InstallFrom>
+                        <MetaData wcm:action="add">
+                            <Key>/image/name</Key>
+                            <Value>Windows 10 Enterprise N</Value>
+                        </MetaData>
+                    </InstallFrom>
                 </OSImage>
             </ImageInstall>
         </component>
@@ -189,7 +195,7 @@
                 <HelpCustomized>false</HelpCustomized>
             </OEMInformation>
             <!-- Rename computer here. -->
-            <ComputerName>vagrant10-1703</ComputerName>
+            <ComputerName>vagrant10-1709</ComputerName>
             <TimeZone>Central European Standard Time</TimeZone>
             <RegisteredOwner />
         </component>

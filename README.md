@@ -11,7 +11,7 @@ These two projects forms one small ecosystem.
 
 ## Requirements
 
-There is only one requirement: [packer](http://www.packer.io).
+There is only one requirement: [packer](http://www.packer.io). Note that, `windows-10.1709` needs `packer 1.2.0`.
 
 Please [download](https://www.packer.io/downloads.html) it and install on your own.
 
@@ -53,7 +53,7 @@ PS packer-officeVM> .\build.ps1 <your-iso-file-path> -locale pl-PL
 
 #### SSH Keys support
 
-> Only `windows-10.1703` template supported.
+> `windows-10.1607` template is not supported.
 
 ##### The rules of concept are simple:
 
