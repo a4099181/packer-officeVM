@@ -1,0 +1,104 @@
+{
+  "builders": [
+    {
+      "boot_command": "",
+      "boot_wait": "5m",
+      "communicator": "winrm",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        ".\\scripts\\Enable-Rdp.ps1",
+        ".\\scripts\\Enable-WinRM.ps1",
+        ".\\scripts\\Install-VBoxGuestAdditions.ps1",
+        ".\\scripts\\Remove-AppxPackage.ps1",
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        ".\\{{user `os`}}\\LayoutModification.xml",
+        "{{ user `home`}}\\.ssh*\\id_*",
+        "{{ user `home`}}\\.ssh*\\known_hosts"
+      ],
+      "guest_additions_mode": "attach",
+      "guest_os_type": "Windows10_64",
+      "headless": true,
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "vm_name": "{{user `os`}}",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "vagrant"
+    },
+    {
+      "boot_command": "",
+      "boot_wait": "5m",
+      "communicator": "winrm",
+      "disk_size": "{{user `disk_size`}}",
+      "memory": "{{user `memory`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        ".\\scripts\\Enable-Rdp.ps1",
+        ".\\scripts\\Enable-WinRM.ps1",
+        ".\\scripts\\Remove-AppxPackage.ps1",
+        ".\\scripts\\Switch-ToPrivateNetwork.ps1",
+        ".\\{{user `os`}}\\LayoutModification.xml",
+        "{{ user `home`}}\\.ssh*\\id_*",
+        "{{ user `home`}}\\.ssh*\\known_hosts"
+      ],
+      "guest_additions_mode": "disable",
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "switch_name": "PackerExternal",
+      "type": "hyperv-iso",
+      "vm_name": "{{user `os`}}",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "vagrant"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "packed\\{{user `os`}}.{{.Provider}}.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": [
+        "@CD /D C:\\Users\\vagrant",
+        "@MKDIR .ssh",
+        "{{user `powershell`}} \"Get-ChildItem A: -Include id_*, known_hosts -File -Recurse | %% { Copy-Item $_.FullName .\\.ssh\\$($_.Name.ToLower()) }\"",
+        "@DIR /B .ssh"
+      ],
+      "type": "windows-shell"
+    }
+  ],
+  "variables": {
+    "autounattend": "",
+    "disk_size": "65535",
+    "memory": "2048",
+    "home": "{{env `USERPROFILE`}}",
+    "iso_checksum": "",
+    "iso_checksum_type": "md5",
+    "iso_url": "",
+    "os": "",
+    "powershell": "powershell -ExecutionPolicy ByPass -NonInteractive -Command",
+    "winrm_timeout": "10m"
+  }
+}
+
