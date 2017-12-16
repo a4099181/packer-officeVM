@@ -1,12 +1,12 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
                               [String] $provider     = 'hyperv',
-                              [String] $os           = 'windows-10.1903',
+                              [String] $os           = 'windows-10.20H2',
                               [String] $locale       = 'pl-PL',
                               [String] $winrmTimeout = '10m' )
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows-10.1903','windows-10.1709')]
+    Param( [ValidateSet('windows-10.20H2','windows-10.1903','windows-10.1709')]
            [Parameter(Mandatory)] [String] $os,
            [ValidateSet('hyperv','virtualbox')]
            [Parameter(Mandatory)] [String] $provider,
@@ -47,8 +47,9 @@ Function Step-BuildVersion
         % {
             $_.versions |
             % {
-                $_.version = ( New-Object Version $_.version |
-                    % { New-Object Version $_.Major, $_.Minor, ( $_.Build + 1 ) } ).ToString(3)
+                $version = $_.version.Split('.')
+                $build = if ($version.Length -eq 3 ) { $version[2] } else { 0 }
+                $_.version = ($version[0], $version[1], (([int]$build)+1)) -join '.'
 
                 $_.providers = @( Get-ChildItem "packed" |
                                         ? Name -Like "$os.*.box" |
