@@ -168,6 +168,11 @@
                     <Order>200</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /t REG_DWORD /f /v "PeopleBand" /d "0"</CommandLine>
+                    <Description>Disable People band.</Description>
+                    <Order>210</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Switch-ToPrivateNetwork.ps1</CommandLine>
                     <Description>Privatize public networks</Description>
                     <Order>400</Order>
