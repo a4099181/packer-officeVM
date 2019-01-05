@@ -123,6 +123,16 @@
                     <Order>50</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /t REG_DWORD /f /v "SecurityLayer" /d "1"</CommandLine>
+                    <Description>Disable NLA (1/2).</Description>
+                    <Order>51</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /t REG_DWORD /f /v "UserAuthentication" /d "0"</CommandLine>
+                    <Description>Disable NLA (2/2).</Description>
+                    <Order>52</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
                     <CommandLine>net accounts /maxpwage:unlimited</CommandLine>
                     <Description>Sets the unlimited number of days that a user account's password is valid.</Description>
                     <Order>60</Order>
