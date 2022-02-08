@@ -7,7 +7,6 @@
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
-        ".\\scripts\\Enable-Rdp.ps1",
         ".\\scripts\\Enable-WinRM.ps1",
         ".\\scripts\\Install-VBoxGuestAdditions.ps1",
         ".\\scripts\\Remove-AppxPackage.ps1",
@@ -50,7 +49,6 @@
       "memory": "{{user `memory`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
-        ".\\scripts\\Enable-Rdp.ps1",
         ".\\scripts\\Enable-WinRM.ps1",
         ".\\scripts\\Remove-AppxPackage.ps1",
         ".\\scripts\\Switch-ToPrivateNetwork.ps1",

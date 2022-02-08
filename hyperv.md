@@ -43,7 +43,6 @@ Warnings for build 'hyperv-iso':
 ==> hyperv-iso: Creating floppy disk...
     hyperv-iso: Copying files flatly from floppy_files
     hyperv-iso: Copying file: .\windows-10.1703\pl-PL\hyperv\Autounattend.xml
-    hyperv-iso: Copying file: .\scripts\Enable-Rdp.ps1
     hyperv-iso: Copying file: .\scripts\Enable-WinRM.ps1
     hyperv-iso: Copying file: .\scripts\Remove-AppxPackage.ps1
     hyperv-iso: Copying file: .\scripts\Switch-ToPrivateNetwork.ps1

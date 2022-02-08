@@ -165,11 +165,6 @@
                     <Order>20</Order>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -ExecutionPolicy ByPass -File a:\Enable-Rdp.ps1</CommandLine>
-                    <Description>Enable RDP.</Description>
-                    <Order>50</Order>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
                     <CommandLine>net accounts /maxpwage:unlimited</CommandLine>
                     <Description>Sets the unlimited number of days that a user account's password is valid.</Description>
                     <Order>60</Order>

@@ -1,9 +1,5 @@
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]
-"SecurityLayer"=dword:1
-"UserAuthentication"=dword:0
-
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Remote Assistance]
 "fAllowToGetHelp"=dword:0
 

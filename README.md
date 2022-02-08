@@ -28,7 +28,6 @@ Choose the one you want. Detailed instructions are described at [hyperv.md](hype
 * Windows installed,
 * single user: `vagrant` with password `vagrant`,
 * VirtualBox Guest additions installed,
-* RDP access enabled,
 * WinRM access enabled,
 * Linux Subsystem for Windows installed,
 * Developer Mode enabled,
