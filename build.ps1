@@ -7,7 +7,7 @@ Param( [Parameter(Mandatory)] [String] $isoUrl,
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows-10.21H2','windows-10.21H1','windows-10.20H2','windows-10.1903','windows-10.1709')]
+    Param( [ValidateSet('windows-10.21H2','windows-10.21H1','windows-10.20H2','windows-10.1903')]
            [Parameter(Mandatory)] [String] $os,
            [ValidateSet('hyperv','virtualbox')]
            [Parameter(Mandatory)] [String] $provider,

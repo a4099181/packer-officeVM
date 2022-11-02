@@ -11,7 +11,7 @@ These two projects forms one small ecosystem.
 
 ## Requirements
 
-There is only one requirement: [packer](http://www.packer.io). Note that, `windows-10.1709` needs `packer 1.2.0`.
+There is only one requirement: [packer](http://www.packer.io).
 
 Please [download](https://www.packer.io/downloads.html) it and install on your own.
 
