@@ -1,13 +1,13 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
                               [String] $provider     = 'hyperv',
-                              [String] $os           = 'windows-10.21H2',
+                              [String] $os           = 'windows-10.22H2',
                               [String] $locale       = 'pl-PL',
                               [String] $winrmTimeout = '10m',
                                        $disksize     = 81920)
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows-10.21H2','windows-10.21H1','windows-10.20H2','windows-10.1903')]
+    Param( [ValidateSet('windows-10.22H2','windows-10.21H2','windows-10.21H1','windows-10.20H2','windows-10.1903')]
            [Parameter(Mandatory)] [String] $os,
            [ValidateSet('hyperv','virtualbox')]
            [Parameter(Mandatory)] [String] $provider,
