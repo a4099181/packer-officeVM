@@ -1,13 +1,50 @@
 Param( [Parameter(Mandatory)] [String] $isoUrl,
                               [String] $provider     = 'hyperv',
-                              [String] $os           = 'windows-10.22H2',
                               [String] $locale       = 'pl-PL',
                               [String] $winrmTimeout = '10m',
-                                       $disksize     = 81920)
+                                       $disksize     = 81920
+)
+
+DynamicParam {
+    $attributes = new-object System.Collections.ObjectModel.Collection[System.Attribute]
+
+    $attribute = New-Object System.Management.Automation.ParameterAttribute
+    $attribute.Position = 0
+    $attribute.ParameterSetName = "os"
+    $attributes.Add($attribute)
+
+    $validOS = (Get-ChildItem -Directory windows-*).Name | Sort-Object -Descending
+
+    if ($validOS) {
+        $validateSetAttribute = New-Object System.Management.Automation.ValidateSetAttribute($validOS)
+        $attributes.Add($validateSetAttribute)
+    }
+
+    $parameter = New-Object System.Management.Automation.RuntimeDefinedParameter('os', [string], $attributes)
+
+    $paramDictionary = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+    $paramDictionary.Add('os', $parameter)
+    return $paramDictionary
+}
+
+begin {
+    if ($PsBoundParameters['os']) {
+        $os = $PsBoundParameters['os']
+    } else {
+        $os = (Get-ChildItem -Directory windows-*).Name | Select-Object -Last 1
+    }
+}
+
+process {
 
 Function Invoke-Packer
 {
-    Param( [ValidateSet('windows-10.22H2','windows-10.21H2','windows-10.21H1','windows-10.20H2','windows-10.1903')]
+    Param( [ValidateSet( 'windows-10.22H2'
+        ,'windows-10.21H2'
+        ,'windows-10.21H1'
+        ,'windows-10.20H2'
+        ,'windows-10.1903'
+    )]
            [Parameter(Mandatory)] [String] $os,
            [ValidateSet('hyperv','virtualbox')]
            [Parameter(Mandatory)] [String] $provider,
@@ -67,3 +104,5 @@ Function Step-BuildVersion
 
 Invoke-Packer $os $provider $locale $isoUrl ( Get-FileHash $isoUrl -Algorithm MD5 ).Hash $disksize $winrmTimeout -ErrorAction Stop
 Step-BuildVersion $os
+
+}
